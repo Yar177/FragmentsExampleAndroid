@@ -30,6 +30,11 @@ public class BodyPartFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (savedInstanceState != null){
+            mImageIds = savedInstanceState.getIntegerArrayList(IMAGE_ID_LIST);
+            mListIndex = savedInstanceState.getInt(LIST_INDEX);
+        }
+
         View rootView = inflater.inflate(R.layout.fragment_body_part, container, false);
         final ImageView imageView = (ImageView) rootView.findViewById(R.id.body_part_imageView);
 
