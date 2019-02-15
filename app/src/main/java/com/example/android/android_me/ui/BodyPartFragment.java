@@ -20,27 +20,32 @@ public class BodyPartFragment extends Fragment {
 
     private List<Integer> mImageIds;
     private int mListIndex;
-
     public BodyPartFragment(){
-
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.fragment_body_part, container, false);
-
-        ImageView imageView = (ImageView) rootView.findViewById(R.id.body_part_imageView);
+        final ImageView imageView = (ImageView) rootView.findViewById(R.id.body_part_imageView);
 
         if (mImageIds != null){
             imageView.setImageResource(mImageIds.get(mListIndex));
 
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListIndex < mImageIds.size()-1){
+                        mListIndex++;
+                    }else {
+                        mListIndex = 0;
+                    }
+                    imageView.setImageResource(mImageIds.get(mListIndex));
+                }
+            });
         }else {
             Log.v(TAG, "thid fragment has null list of images ids");
-
         }
-
         return rootView;
     }
 
